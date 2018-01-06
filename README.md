@@ -1,3 +1,3 @@
-# Test
+# Tiny JavaScript codes for Textwell actions
 
-from iPhon working-copy app.
+Update from iPhon working-copy app.
