@@ -1,0 +1,13 @@
+asciidoctor.js を用いた、
+asciidoc preview です。
+(要ネット接続)
+
+2017/09/14 
+以前のRaw ファイルを別ファイルに修正。
+(https://raw.githubusercontent.com/ggranum/asciidoctorjs-web-repack/master/redist/asciidoctor-all.min.js )
+
+2017/11/01
+Textwellのアプデへの対応の為、
+暫定的に(？) T.requestを用いました。
+
+
