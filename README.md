@@ -20,4 +20,4 @@
 
 ---
 
-Update from iPhon working-copy app.
+Update from iPhone WorkingCopy app.
