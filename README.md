@@ -3,7 +3,7 @@
 ## URLs
 
 ### github-pages & code
-* "Tiny JavaScript codes for Textwell actions | Tiny-JSs-for-Textwell"
+* "Tiny JavaScript codes for Textwell actions / Tiny-JSs-for-Textwell"  
 <https://uprime22.github.io/Tiny-JSs-for-Textwell/>
 
 * "uprime22/Tiny-JSs-for-Textwell: for textwell actions"  
