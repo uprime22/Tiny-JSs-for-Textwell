@@ -1,14 +1,29 @@
-(function(){
+function text2opml (wholeText,baseSpaceCount){
 "use strict";
 
-// インデントに使う空白の基本の量を指定して下さい。
-// タブ1字はこの空白量と同等に解釈されます。
-var space = "    "; //空白4
+// baseSpaceCountが3なら、1indent=3spaces=1tab で計算されます。
+// 指定されない時は、1indent=4spacesで計算。
+var space = " ";
+var bSCnt = parseInt(baseSpaceCount,10);
+if (bSCnt == NaN || bSCnt < 1){
+  bSCnt = 4;
+  };
+for (i =1,l = bSCnt; i<l; i++){
+  space += " ";
+  };
 
-// ----------
+var txt = wholeText;
 
-var txt = T.text;
-var lines=txt.split("\n");
+// NewLineCode "\n" linux and iOS
+var NLc =
+(function (str){
+if(str.indexOf("\r\n")>-1){return "\r\n";}
+  else if(str.indexOf("\n")>-1){return "\n";}
+  else if(str.indexOf("\r")>-1){return "\r";}
+    })(txt);
+    
+var lines=txt.split(NLc);
+// texts with level info
 var levary=[];
 
 var dt=new Date();
@@ -19,6 +34,7 @@ var dateobj={
   "hour":dt.getHours(),
   "minute":dt.getMinutes(),
   };
+// ex. "2018/1/25 13:25"
 var datestr=
   dateobj.year +"/"+
   dateobj.month +"/"+
@@ -28,20 +44,21 @@ var datestr=
   
 var tags={
   "head": 
-    "<?xml version=\"1.0\" encoding=\"utf-8\" ?>\n<opml version=\"1.0\">\n<head>\n<title>"+ datestr +"</title>\n</head>\n<body>",
+    "<?xml version=\"1.0\" encoding=\"utf-8\" ?>"+NLc+"<opml version=\"1.0\">"+NLc+"<head>"+NLc+"<title>"+ datestr +"</title>"+NLc+"</head>"+NLc+"<body>",
   "end": 
-    "\n</body>\n</opml>\n "
+    NLc+"</body>"+
+    NLc+"</opml>"+NLc
 };
 
 // エスケープ文字の置き換え関数
 function xml_escape(str) {
-		str = str.replace(/&/g,"&amp;");
-		str = str.replace(/"/g,"&quot;");
-		str = str.replace(/'/g,"&apos;");
-		str = str.replace(/</g,"&lt;");
-		str = str.replace(/>/g,"&gt;");
-		// str = str.replace(/\n/g,"&#xA;");
-		return str;
+  str = str.replace(/&/g,"&amp;");
+  str = str.replace(/"/g,"&quot;");
+  str = str.replace(/'/g,"&apos;");
+  str = str.replace(/</g,"&#60;");
+  str = str.replace(/>/g,"&#62;");
+  // str = str.replace(/\n/g,"&#xA;");
+  return str;
 };
 
 // '#'の数でレベルを設定,無しなら0
@@ -64,10 +81,8 @@ function count(indent,base) {
 var base = 0;
 
 // インデントと本文を拾う正規表現
-
 // 本文からlist markを削る
 //var indtexp=/^(\s*)(?:[\+\-\*]\s)?(\S*.*)$/;
-
 // list markを削らない
 var indtexp=/^(\s*)(\S*.*)$/;
 
@@ -98,7 +113,7 @@ if (levary.length ==0){
 };
 
 
-// 階層の解釈と整形
+// 階層情報の解釈と整形
 var pre = levary[0][1];
 var scale = [];
 for ( var i = 1, l = levary.length ; i < l; i++ ) {
@@ -126,7 +141,6 @@ for ( var i = 1, l = levary.length ; i < l; i++ ) {
     pre = lev;
   };
 };
-
 
 //alert(levary.toString());
 
@@ -176,16 +190,20 @@ i < l ; i++){
   appendnew (
   current,lv,nextnode);
   prelev = levary[i][1];
-};
-  
+};  
 // opml テキストを得る。
-var result = (new XMLSerializer()).
+var opmltxt = (new XMLSerializer()).
 serializeToString(dom);
 // 少し見栄え良く
-result = result.replace(/(<\/*outline)/mg,"\n$1");
+opmltxt = opmltxt.replace(/(<\/*outline[^>]*>)/mg,"$1"+NLc);
+return opmltxt
+};
+
+// 全文を変換。
+var result =
+text2opml(T.whole);
 
 // loadletに渡す関数。定義内に外部の変数は使えないので注意。
-
 var openin= function(obj){
   T( 'openin', {
     text: obj.txt,
@@ -206,14 +224,13 @@ var replace = function(obj){
   } );
 };
 
-
 T.loadlets(
   [
     { title: "Open In",
       fn: openin,
       arg: {txt: result,
             // 1行目をファイル名に
-            name:levary[0][2]},
+            name:"test"},
     },
     { title: "Copy OPML",
       fn: copy,
@@ -227,8 +244,3 @@ T.loadlets(
   function(){location="about:blank"
 }
 );
-
-}());
-
-
-
