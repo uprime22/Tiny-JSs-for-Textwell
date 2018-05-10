@@ -1,0 +1,16 @@
+markdown-it
+<https://github.com/markdown-it/markdown-it>
+
+markdown-it-footnote: Footnotes plugin for markdown-it 
+<https://github.com/markdown-it/markdown-it-footnote>
+
+ markdown-it によるプレビューです。
+脚注プラグインを追加。
+(要ネット接続)
+
+T.request 使用のヴァージョン。
+開発中。
+2017/10/30
+
+Open In 追加。
+2018/05/10
