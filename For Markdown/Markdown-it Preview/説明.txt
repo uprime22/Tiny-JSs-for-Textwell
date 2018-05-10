@@ -5,7 +5,6 @@ markdown-it-footnote: Footnotes plugin for markdown-it
 <https://github.com/markdown-it/markdown-it-footnote>
 
  markdown-it によるプレビューです。
-脚注プラグインを追加。
 (要ネット接続)
 
 T.request 使用のヴァージョン。

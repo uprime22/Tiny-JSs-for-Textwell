@@ -24,7 +24,7 @@ function openin(x){
   T('openin',
      {text: tag1+x+tag2,
       encoding:'utf-8',
-      filename:'print',
+      filename:T.line(1),
       extension:'html',
       option: 'none',
       }
@@ -74,7 +74,8 @@ T.closelets(reObj(x));
 function reObj(xx){
 var obj =
       [{
-      title: 'HTML出力',
+      title:
+      'Replace with HTML',
       fn: function(x){
             T('replace',
              {text:
