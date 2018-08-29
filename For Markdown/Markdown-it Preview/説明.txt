@@ -13,3 +13,6 @@ T.request 使用のヴァージョン。
 
 Open In 追加。
 2018/05/10
+
+openin に渡すfilenameによる不具合の解消。
+2018/08/30
