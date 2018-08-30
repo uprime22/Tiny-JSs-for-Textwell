@@ -17,10 +17,11 @@ var tag1 = '<!DOCTYPE html>\n<html>\n<head>\n<meta charset="utf-8">\n<title>Unti
 
 var tag2 = '\n</body>\n</html>\n'
 
-function openin(x){
+function openasHtml(x){
   var xadd ="fail";
   var reHtml =
-    new RegExp("<html>","g");
+    new RegExp(
+    "<html>","g");
   if (reHtml.test(x)){
     xadd = x;
     }else{
@@ -31,15 +32,31 @@ function openin(x){
      {text: xadd,
       encoding:'utf-8',
       filename:makename(
-        T.line(1)),
+      ),
       extension:'html',
       option: 'none',
       }
    );
 };
 
-// 日本語英数字ピリオド以外を削除
-function makename(s){
+function openasOrigin(x){
+  var xadd = T.whole;    
+  T('openin',
+     {text: xadd,
+      encoding:'utf-8',
+      filename:makename(
+      ),
+      extension:'md',
+      option: 'none',
+      }
+   );
+};
+
+
+function makename(){
+  var s = T.whole.
+  replace(/^[ \t]*\n/g,'').
+  split(/\n/,1)[0];
   var filename =
     s.replace(/[^\.A-Za-z0-9\u30e0-\u9fcf\u3040-\u309f\u30a0-\u30ff]/gi, '');
   return (filename);
@@ -85,7 +102,7 @@ function doclose(x){
 T.closelets(reObj(x));
 };
 
-function reObj(xx){
+function reObj(str){
 var obj =
       [{
       title:
@@ -94,16 +111,22 @@ var obj =
             T('replace',
              {text:
              x.txt});},
-      arg: {txt:xx},
+      arg: {txt:str},
       },{
       title:
       'Open as HTML',
       fn: function(x){
-         openin(x.txt);},
-      arg: {txt:xx},
+         openasHtml(x.txt);},
+      arg: {txt:str},
+      },{
+      title:
+      'Open as Origin',
+      fn: function(x){
+         openasOrigin(x.txt);},
+      arg: {txt:str},
       },
       ] ;
-      return obj;
+  return obj;
 };
       
 
