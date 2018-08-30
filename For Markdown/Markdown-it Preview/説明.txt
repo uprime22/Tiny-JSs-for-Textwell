@@ -15,5 +15,5 @@ Open In 追加。
 2018/05/10
 
 openin に渡すfilenameを1行目から作る。
-Open as origin追加
+Open as MD追加
 2018/08/30

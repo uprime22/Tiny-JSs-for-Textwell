@@ -39,7 +39,7 @@ function openasHtml(x){
    );
 };
 
-function openasOrigin(x){
+function openasMD(x){
   var xadd = T.whole;    
   T('openin',
      {text: xadd,
@@ -55,7 +55,6 @@ function openasOrigin(x){
 
 function makename(){
   var s = T.whole.
-  replace(/^[ \t]*\n/g,'').
   split(/\n/,1)[0];
   var filename =
     s.replace(/[^\.A-Za-z0-9\u30e0-\u9fcf\u3040-\u309f\u30a0-\u30ff]/gi, '');
@@ -120,9 +119,9 @@ var obj =
       arg: {txt:str},
       },{
       title:
-      'Open as Origin',
+      'Open as MD',
       fn: function(x){
-         openasOrigin(x.txt);},
+         openasMD(x.txt);},
       arg: {txt:str},
       },
       ] ;
