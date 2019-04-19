@@ -1,0 +1,1 @@
+Log text to WorkingCopy app.
