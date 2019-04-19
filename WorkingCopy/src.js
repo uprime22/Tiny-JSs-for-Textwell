@@ -14,9 +14,9 @@ var now =
 my.year
 +'-'+ my.month
 +'-'+ my.date
-+' '+Zero(d.getHours())+':'+Zero(d.getMinutes())+'\n';
++' '+Zero(d.getHours())+':'+Zero(d.getMinutes());
 
-my.text = now + T.whole + '\n' + '---'+ '\n';
+my.text = now + '\n\n' + T.whole + '\n\n' + '---'+ '\n\n';
 // your key
 my.key = 'hogehoge';
 // target repogitory
