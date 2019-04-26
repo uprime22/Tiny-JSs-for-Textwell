@@ -16,7 +16,7 @@ my.year
 +'-'+ my.date
 +' '+Zero(d.getHours())+':'+Zero(d.getMinutes());
 
-my.text = now + '\n\n' + T.whole + '\n\n' + '---'+ '\n\n';
+my.text = '# '+ now + '\n\n' + T.whole + '\n\n' + '---'+ '\n\n';
 // your key
 my.key = 'hogehoge';
 // target repogitory
